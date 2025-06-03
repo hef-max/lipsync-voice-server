@@ -1,11 +1,10 @@
 from flask import Flask, request, jsonify, Response
 import tempfile
 import subprocess
-import json
 import os
 
 app = Flask(__name__)
-rhubarb_executable = "rhubarb"
+rhubarb_executable = os.path.join(os.path.dirname(__file__), 'rhubarb')
 
 @app.route('/process-voice', methods=['POST'])
 def process_voice():
@@ -49,4 +48,4 @@ def process_voice():
             os.remove(temp_json_path)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run()
